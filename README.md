@@ -24,7 +24,7 @@ Any excess data beyond the returned line is preserved in the stash for the next 
 
 ## **Instructions**
 ***
-• To use ft_printf in your own project, include the header: ```"get_next_line.h"```. If you are using the bonus version, include: ```"get_next_line_bonus.h"```.
+• To use get_next_line in your own project, include the header: ```"get_next_line.h"```. If you are using the bonus version, include: ```"get_next_line_bonus.h"```.
 
 Compile your project using the mandatory source files:
 ```cc -Wall -Wextra -Werror get_next_line.c get_next_line_utils.c your_file.c```.
