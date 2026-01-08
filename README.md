@@ -29,6 +29,7 @@ Any excess data beyond the returned line is preserved in the stash for the next 
 • Example main :
 ```
 # include <fcntl.h>
+# include <stdio.h>
 # include "get_next_line.h"
 
 int		main(void)
