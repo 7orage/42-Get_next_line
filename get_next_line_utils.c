@@ -6,11 +6,10 @@
 /*   By: lheteau <lheteau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 18:27:06 by lheteau           #+#    #+#             */
-/*   Updated: 2026/01/08 15:41:21 by lheteau          ###   ########.fr       */
+/*   Updated: 2026/01/08 16:52:28 by lheteau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
 #include "get_next_line.h"
 
 size_t	ft_strlen(const char *str)
@@ -27,17 +26,16 @@ size_t	ft_strlen(const char *str)
 
 char	*ft_strchr(const char *s, int c)
 {
-	size_t	i;
-
 	if (!s)
 		return (NULL);
-	i = 0;
-	while (s[i])
+	while (*s)
 	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i + 1]);
-		i++;
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
 	}
+	if (c == '\0')
+		return ((char *)s);
 	return (NULL);
 }
 

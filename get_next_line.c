@@ -6,7 +6,7 @@
 /*   By: lheteau <lheteau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 18:26:36 by lheteau           #+#    #+#             */
-/*   Updated: 2026/01/08 15:40:31 by lheteau          ###   ########.fr       */
+/*   Updated: 2026/01/08 16:52:30 by lheteau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,21 @@ static int	read_and_stash(int fd, char **stash, char *buff)
 static void	free_tmp(char **stash)
 {
 	char	*tmp;
+	char	*newline_pos;
 
 	tmp = *stash;
-	*stash = ft_strdup(ft_strchr(tmp, '\n'));
+	newline_pos = ft_strchr(tmp, '\n');
+	if (newline_pos)
+	{
+		newline_pos++;
+		if (*newline_pos)
+			*stash = ft_strdup(newline_pos);
+		else
+			*stash = NULL;
+	}
+	else
+		*stash = NULL;
 	free(tmp);
-	return ;
 }
 
 static char	*extract_line(char **stash)
@@ -97,34 +107,3 @@ char	*fill_line(int fd, char **stash, char *buff)
 		return (NULL);
 	return (extract_line(stash));
 }
-
-/*Ce que fait chaque partie (ultra résumé)
-
-read_and_stash
-→ lit le fichier et remplit stash jusqu’à \n ou EOF
-
-extract_line
-→ extrait la ligne à retourner et met à jour stash
-
-fill_line
-→ fonction orchestratrice, courte et normée*/
-
-/*
-int	main(void)
-{
-	int		fd;
-	char	*line;
-
-	fd = open("1char.txt", O_RDONLY);
-	line = get_next_line(fd);
-	printf("1line : %s\n", line);
-	free(line);
-
-	line = get_next_line(fd);
-	printf("2line : %s\n", line);
-	free(line);
-
-	line = get_next_line(fd);
-	printf("3line : %s\n", line);
-	free(line);
-}*/
