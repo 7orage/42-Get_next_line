@@ -1,4 +1,3 @@
-[README.md](https://github.com/user-attachments/files/24477623/README.md)
 # Get_next_line
 ***
 • _This project has been created as part of the 42 curriculum by lheteau. We are the 29th december 2025._
