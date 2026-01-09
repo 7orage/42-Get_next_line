@@ -1,6 +1,6 @@
 # Get_next_line
 ***
-• _This project has been created as part of the 42 curriculum by lheteau. We are the 29th december 2025._
+• _This project has been created as part of the 42 curriculum by <lheteau>. We are the 29th december 2025._
 
 ***
 ### Table of contents
@@ -8,6 +8,7 @@
 1. _Description_
 2. _Instructions_
 3. _Ressources_
+4. _Algorithm logic_
 
 ***
 ## **Description**
@@ -29,7 +30,7 @@ Any excess data beyond the returned line is preserved in the stash for the next 
 Compile your project using the mandatory source files:
 ```cc -Wall -Wextra -Werror get_next_line.c get_next_line_utils.c your_file.c```.
 To use it as bonus, compile the files ending with _bonus:
-```cc -Wall -Wextra -Werror get_next_line_bonus.c get_next_line_utils_bonus.c your_file.c```
+```cc -Wall -Wextra -Werror get_next_line_bonus.c get_next_line_utils_bonus.c your_file.c```.
 ***
 • Example main :
 ```
@@ -63,3 +64,15 @@ int		main(void)
 • Artificial Intelligence tools were used to better understand the use and manipulation of pointers with static variables, as well as to clarify misconceptions regarding the difference between ```(*stash)[i]``` and ```*stash[i]```.
 
 They were also helpful in the writing and structuring of this README.
+
+## **Algorithm logic**
+***
+• The core of the algorithm is based on a static string called stash, which stores leftover data between calls to get_next_line. This allows the function to return one line at a time while preserving unread characters.
+
+The get_next_line function handles input validation, initializes the buffer, and delegates the reading process to fill_line. The fill_line function ensures that stash is initialized and calls read_and_stash to read from the file descriptor.
+
+The read_and_stash function reads chunks of size BUFFER_SIZE into buff and appends them to stash using ft_strjoin until a newline character is found (ft_strchr) or the read reaches EOF.
+
+Once enough data is available, extract_line is responsible for extracting a complete line from stash. If a newline is found, it returns the line using ft_substr and updates stash through free_tmp to keep only the remaining data. If no newline is present, the remaining content of stash is returned and the stash is cleared.
+
+This function-based separation ensures clarity, efficient memory handling, and guarantees that each call to get_next_line returns exactly one line while maintaining the internal state across calls.
